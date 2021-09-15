@@ -1,1 +1,38 @@
+1. Noção de Processos
+
+Um programa concorrente pode ser conceituado como um conjunto de processos seqüenciais autônomos executando em paralelo. Toda linguagem de programação concorrente deve incorporar, implícita ou explicitamente, a noção de processo. Cada processo tem sua própria linha de execução de controle, chamada de thread. 
+Esse laboratório servirá para o aluno aprender sobre criação e manipulação de threads, como uma aplicação simples multithread. 
+
+
+2. Procedimento
+
+2.1. Elabore um programa que crie 3 threads: thread A, thread B e thread C;
+2.2. Cada thread deve acessar um array do tipo char (listachar[]) com 30 elementos (variável global). Esse array deve ser preenchido na seguinte ordem: o índice 0 do array deve receber o caracter “A”, da thread A; o índice 1 do array deve receber o caracter “B”, da thread B; o índice 2 do array deve receber o caracter “C”, da thread C; e assim sucessivamente até todo o array ser preenchido. Após o preenchimento do vetor, a thread C deverá imprimir na tela a sequência dos caracteres armazenados. Verifique se a ordem dos caracteres obedeceu o esperado.
+
+3. Conceitos para o Desenvolvimento da Aplicação
+
+Crie uma função para criação das três threads, chamada de start_thread(). Estude e utilize a função para criação de threads do C++builder, chamada de _beginthread(). Os argumentos da função _beginthread() são: o start_address deve ser declarado para ser  _USERENTRY. A thread inicia sua execução no start_address. O tamanho de sua pilha em bytes é o stack_size. Para thread é passada arglist como seu único parâmetro; ele pode ser NULL, mas deve estar presente. A thread pode finalizar por uma  simples chamada a função return. 
+
+Exemplo:
+
+void thread_code_1(void *threadno)  \\   thread 
+{
+}
+
+void start_thread(){
+
+long int thread_id;
+
+#if     defined(__WIN32__)
+    if ((thread_id = _beginthread(Ta, 4096, NULL)) == (unsigned long)-1)
+#else
+    if ((thread_id = _beginthread(Ta, 4096, NULL)) == -1)
+#endif
+    {
+        printf("Unable to create thread A.\n");
+        return;
+    }
+    printf("Created thread A.\n");
+
+}
 
